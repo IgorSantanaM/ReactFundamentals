@@ -1,9 +1,9 @@
-import Banner from "./components/Banner";
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client"
+import App from "./App.jsx";
 
-function App(){
-  return(
-    <>
-    <Banner/>
-    </>
-  )
-}
+createRoot(document.getElementById('root')).render(
+  <StrictMode>
+    <App />
+  </StrictMode>
+)

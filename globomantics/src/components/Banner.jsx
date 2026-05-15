@@ -1,14 +1,23 @@
 import logo from "../assets/GlobomanticsLogo.png"
+import {logo as logoClass} from "./Banner.module.css"
 
-const Banner = () =>{
+const subtitleStyle = {
+    fontStyle: "italic",
+    fontSize: "x-large",
+    color: "coral"
+};
+
+
+const Banner = ({headerText}) =>{
     return(
         <header>
             <div>
-                <img src={logo} alt="logo" />
+                <img src={logo} className={logoCLass } alt="logo" />
             </div>
-            <div>Providing houses all over the world</div>
+            <div className="col-7 mt-5" style={subtitleStyle}>
+                {headerText}
+            </div>
         </header>
     )
 }
-
 export default Banner;
