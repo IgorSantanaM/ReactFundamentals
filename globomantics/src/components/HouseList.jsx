@@ -1,26 +1,12 @@
-import { useState } from "react";
+    import { HouseRowMem } from "./HouseRow";
+    import useHouses from "../hooks/useHouses";
 
-const housesArray = [
-    {
-        id: 1,
-        address: "12 Valley of Kings, Geneva",
-        country: "Switzerland",
-        price: 900000
-    },
-    {
-        id: 1,
-        address: "89 Road of Garcias, Bern",
-        country: "Switzerland",
-        price: 500000
-    }
-]
 
 const HouseList = () => {
-    const [houses, setHouses] = useState(housesArray);
-    const [counter, setCounter] = useState(0);
-    setCounter(current => current + 1);
+    const {houses, setHouses, loadingState} = useHouses();
 
-
+    if(loadingState === loadingStatus.loaded) 
+        return <LoadingIndicator loadingState={loadingState} />
     const addHouse = () => {
         setHouses([
             ...houses, {
@@ -47,9 +33,11 @@ const HouseList = () => {
                     <th>Asking Price</th>
                 </tr>
             </thead>
-            <tbody>
-                {houses.map(h => <HouseRow key={h.id} house={h}/>)}
-            </tbody>
+            <ErrorBoundary fallback="Error loading houses">
+                <tbody>
+                    {houses.map(h => <HouseRowMem key={h.id} house={h}/>)}
+                </tbody>
+            </ErrorBoundary>
         </table>
         <button onClick={addHouse} className="btn btn-primary">
             Add
